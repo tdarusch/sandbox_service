@@ -18,7 +18,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "RESUME_JOB", schema = "SANDBOX")
+@Table(name = "RESUME_JOBS", schema = "SANDBOX")
 public class ResumeJob {
   
   @Id

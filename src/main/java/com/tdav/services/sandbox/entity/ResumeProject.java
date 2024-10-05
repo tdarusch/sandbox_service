@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "RESUME_EDUCATION", schema = "SANDBOX")
+@Table(name = "RESUME_PROJECTS", schema = "SANDBOX")
 public class ResumeProject {
 
   @Id
