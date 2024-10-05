@@ -1,4 +1,4 @@
-package com.tdav.services.sandbox.entity;
+package com.tdav.services.sandbox.entities;
 
 public enum BlogStatusEnum {
   DRAFT,

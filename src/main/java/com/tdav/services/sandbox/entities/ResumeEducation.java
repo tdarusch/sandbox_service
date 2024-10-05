@@ -1,4 +1,4 @@
-package com.tdav.services.sandbox.entity;
+package com.tdav.services.sandbox.entities;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -13,8 +13,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "RESUME_PROJECTS", schema = "SANDBOX")
-public class ResumeProject {
+@Table(name = "RESUME_EDUCATION", schema = "SANDBOX")
+public class ResumeEducation {
 
   @Id
   @UuidGenerator(style = UuidGenerator.Style.RANDOM)
@@ -27,8 +27,10 @@ public class ResumeProject {
   @DateTimeFormat(pattern = "MM/dd/yyyy")
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
   private LocalDate endDate;
+  
+  private String schoolName;
 
-  private String name;
+  private String type;
 
   private String description;
 
@@ -56,12 +58,20 @@ public class ResumeProject {
     this.endDate = endDate;
   }
 
-  public String getName() {
-    return name;
+  public String getSchoolName() {
+    return schoolName;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setSchoolName(String schoolName) {
+    this.schoolName = schoolName;
+  }
+
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 
   public String getDescription() {

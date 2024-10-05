@@ -1,4 +1,4 @@
-package com.tdav.services.sandbox.entity;
+package com.tdav.services.sandbox.entities;
 
 import java.time.LocalDate;
 import java.util.List;

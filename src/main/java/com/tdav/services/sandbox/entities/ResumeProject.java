@@ -1,7 +1,6 @@
-package com.tdav.services.sandbox.entity;
+package com.tdav.services.sandbox.entities;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.annotations.UuidGenerator;
@@ -9,16 +8,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "PROJECTS", schema = "SANDBOX")
-public class Project {
+@Table(name = "RESUME_PROJECTS", schema = "SANDBOX")
+public class ResumeProject {
 
   @Id
   @UuidGenerator(style = UuidGenerator.Style.RANDOM)
@@ -34,13 +30,7 @@ public class Project {
 
   private String name;
 
-  private String blurb;
-
   private String description;
-
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "project_id")
-  private List<Link> links;
 
   public UUID getId() {
     return id;
@@ -74,14 +64,6 @@ public class Project {
     this.name = name;
   }
 
-  public String getBlurb() {
-    return blurb;
-  }
-
-  public void setBlurb(String blurb) {
-    this.blurb = blurb;
-  }
-
   public String getDescription() {
     return description;
   }
@@ -89,13 +71,5 @@ public class Project {
   public void setDescription(String description) {
     this.description = description;
   }
-
-  public List<Link> getLinks() {
-    return links;
-  }
-
-  public void setLinks(List<Link> links) {
-    this.links = links;
-  }
-
+  
 }
