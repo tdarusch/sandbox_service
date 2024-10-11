@@ -13,43 +13,43 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.tdav.services.sandbox.dtos.ProjectDTO;
-import com.tdav.services.sandbox.entities.Project;
-import com.tdav.services.sandbox.services.ProjectService;
+import com.tdav.services.sandbox.dtos.BlogPostDTO;
+import com.tdav.services.sandbox.entities.BlogPost;
+import com.tdav.services.sandbox.services.BlogPostService;
 
 @RestController
-@RequestMapping("/projects")
-public class ProjectController {
+@RequestMapping("/blog-posts")
+public class BlogPostController {
 
-  private final ProjectService projectService;
+  private final BlogPostService blogPostService;
 
-  public ProjectController(ProjectService projectService) {
-    this.projectService = projectService;
+  public BlogPostController(BlogPostService blogPostService) {
+    this.blogPostService = blogPostService;
   }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<ProjectDTO> getAllProjects() {
-    return projectService.getAllProjects();
+  public List<BlogPostDTO> getAllBlogPosts() {
+    return blogPostService.getAllBlogPosts();
   }
 
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Project getProject(@PathVariable UUID id) {
-    return projectService.getProjectById(id);
+  public BlogPost getBlogPost(@PathVariable UUID id) {
+    return blogPostService.getBlogPostById(id);
   }
 
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public Project saveProject(@RequestBody Project project) {
-    return projectService.saveProject(project);
+  public BlogPost saveBlogPost(@RequestBody BlogPost blogPost) {
+    return blogPostService.saveBlogPost(blogPost);
   }
 
   @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Project updateProject(@PathVariable UUID id, @RequestBody Project project) {
-    return projectService.updateProject(project, id);
+  public BlogPost updateBlogPost(@PathVariable UUID id, @RequestBody BlogPost blogPost) {
+    return blogPostService.updateBlogPost(blogPost, id);
   }
 
   @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public void deleteProject(@PathVariable UUID id, @RequestBody Project project) {
-    projectService.deleteProject(project, id);
+  public void deleteBlogPost(@PathVariable UUID id, @RequestBody BlogPost blogPost) {
+    blogPostService.deleteBlogPost(blogPost, id);
   }
 
 }
