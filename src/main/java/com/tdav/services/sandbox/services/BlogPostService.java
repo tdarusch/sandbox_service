@@ -1,6 +1,5 @@
 package com.tdav.services.sandbox.services;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -40,10 +39,6 @@ public class BlogPostService {
           "Cannot persist a new blog post with an existing ID. Use the update method instead.");
     }
 
-    if (blogPost.getCreatedDate() == null) {
-      blogPost.setCreatedDate(LocalDate.now());
-    }
-
     return blogPostRepo.save(blogPost);
   }
 
@@ -53,8 +48,6 @@ public class BlogPostService {
     } else if (!blogPost.getId().equals(id)) {
       throw new InvalidDataException("Project ID in request and body do not match.");
     }
-
-    blogPost.setRevisedDate(LocalDate.now());
 
     return blogPostRepo.save(blogPost);
   }

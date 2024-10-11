@@ -42,7 +42,7 @@ public class ResumeJob {
   private String description;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "resume_skill_id")
+  @JoinColumn(name = "resume_job_skill_id", nullable = true)
   private List<ResumeSkill> skills;
 
   public UUID getId() {

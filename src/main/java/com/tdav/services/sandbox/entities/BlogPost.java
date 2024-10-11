@@ -17,6 +17,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
 @Entity
@@ -162,6 +164,16 @@ public class BlogPost {
 
   public void setSections(List<BlogSection> sections) {
     this.sections = sections;
+  }
+
+  @PrePersist
+  protected void onCreate() {
+    createdDate = LocalDate.now();
+  }
+
+  @PreUpdate
+  protected void onUpdate() {
+    revisedDate = LocalDate.now();
   }
 
 }

@@ -39,7 +39,7 @@ public class Project {
   private String description;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "project_id")
+  @JoinColumn(name = "project_id", nullable = true)
   private List<Link> links;
 
   public UUID getId() {
