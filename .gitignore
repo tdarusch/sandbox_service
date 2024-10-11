@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### H2 DB Errors ###
+/data/sandbox.trace.db

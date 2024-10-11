@@ -12,6 +12,7 @@ public class BlogPostDTO {
   private String title;
   private String description;
   private String author;
+  private String slug;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
   private LocalDate createdDate;
@@ -22,6 +23,7 @@ public class BlogPostDTO {
     this.description = blogPost.getDescription();
     this.author = blogPost.getAuthor();
     this.createdDate = blogPost.getCreatedDate();
+    this.slug = blogPost.getSlug();
   }
 
   public UUID getId() {
@@ -62,6 +64,14 @@ public class BlogPostDTO {
 
   public void setCreatedDate(LocalDate createdDate) {
     this.createdDate = createdDate;
+  }
+
+  public String getSlug() {
+    return slug;
+  }
+
+  public void setSlug(String slug) {
+    this.slug = slug;
   }
 
 }
