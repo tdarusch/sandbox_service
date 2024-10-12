@@ -25,7 +25,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "BLOG_POSTS", schema = "SANDBOX")
 public class BlogPost {
-  
+
   @Id
   @UuidGenerator(style = UuidGenerator.Style.RANDOM)
   private UUID id;
@@ -44,10 +44,10 @@ public class BlogPost {
   private String title;
 
   private String description;
-  
+
   @Column(length = 255)
   private String author;
-  
+
   private boolean archived;
 
   private boolean featured;
@@ -62,6 +62,10 @@ public class BlogPost {
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "blog_section_id")
   private List<BlogSection> sections;
+
+  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+  @JoinColumn(name = "blog_tag_id")
+  private List<BlogTag> tags;
 
   public UUID getId() {
     return id;
@@ -165,6 +169,14 @@ public class BlogPost {
 
   public void setSections(List<BlogSection> sections) {
     this.sections = sections;
+  }
+
+  public List<BlogTag> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<BlogTag> tags) {
+    this.tags = tags;
   }
 
   @PrePersist

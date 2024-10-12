@@ -1,10 +1,12 @@
 package com.tdav.services.sandbox.dtos;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.tdav.services.sandbox.entities.BlogPost;
+import com.tdav.services.sandbox.entities.BlogTag;
 
 public class BlogPostDTO {
 
@@ -13,6 +15,7 @@ public class BlogPostDTO {
   private String description;
   private String author;
   private String slug;
+  private List<BlogTag> tags;
 
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
   private LocalDate createdDate;
@@ -24,6 +27,7 @@ public class BlogPostDTO {
     this.author = blogPost.getAuthor();
     this.createdDate = blogPost.getCreatedDate();
     this.slug = blogPost.getSlug();
+    this.tags = blogPost.getTags();
   }
 
   public UUID getId() {
@@ -72,6 +76,14 @@ public class BlogPostDTO {
 
   public void setSlug(String slug) {
     this.slug = slug;
+  }
+
+  public List<BlogTag> getTags() {
+    return tags;
+  }
+
+  public void setTags(List<BlogTag> tags) {
+    this.tags = tags;
   }
 
 }
