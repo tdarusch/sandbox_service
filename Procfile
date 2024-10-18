@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/dependency/webapp-runner.jar target/sandbox.war
+web: java -Dserver.port=$PORT -jar target/sandbox.jar
