@@ -34,3 +34,6 @@ build/
 
 ### H2 DB Errors ###
 /data/sandbox.trace.db
+
+## Generated schema
+/create.sql
