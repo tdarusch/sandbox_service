@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -28,6 +29,7 @@ public class Contact {
 
   private String email;
 
+  @Column(columnDefinition = "TEXT")
   private String message;
 
   @DateTimeFormat(pattern = "MM/dd/yyyy")

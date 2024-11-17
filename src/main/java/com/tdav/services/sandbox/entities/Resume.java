@@ -33,6 +33,7 @@ public class Resume {
 
   private String title;
 
+  @Column(columnDefinition = "TEXT")
   private String blurb;
 
   private String resumeNickname;

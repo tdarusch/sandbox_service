@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
@@ -28,6 +29,7 @@ public class Message {
 
   private String email;
 
+  @Column(columnDefinition = "TEXT")
   private String message;
 
   private Boolean isArchived = false;

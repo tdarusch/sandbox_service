@@ -39,6 +39,7 @@ public class ResumeJob {
   @Column(length = 255)
   private String jobTitle;
 
+  @Column(columnDefinition = "TEXT")
   private String description;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)

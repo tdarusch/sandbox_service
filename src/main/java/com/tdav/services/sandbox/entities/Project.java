@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -34,8 +35,10 @@ public class Project {
 
   private String name;
 
+  @Column(columnDefinition = "TEXT")
   private String blurb;
 
+  @Column(columnDefinition = "TEXT")
   private String description;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
