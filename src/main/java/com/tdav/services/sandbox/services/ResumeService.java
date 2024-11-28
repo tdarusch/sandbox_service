@@ -1,5 +1,6 @@
 package com.tdav.services.sandbox.services;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.tdav.services.sandbox.dtos.ResumeDTO;
 import com.tdav.services.sandbox.entities.Resume;
+import com.tdav.services.sandbox.entities.ResumeEducation;
+import com.tdav.services.sandbox.entities.ResumeJob;
+import com.tdav.services.sandbox.entities.ResumeProject;
 import com.tdav.services.sandbox.handlers.InvalidDataException;
 import com.tdav.services.sandbox.handlers.ResourceNotFoundException;
 import com.tdav.services.sandbox.repositories.ResumeRepository;
@@ -26,13 +30,15 @@ public class ResumeService {
   }
 
   public Resume getResumeById(UUID id) {
-    return resumeRepo.findById(id)
+    Resume resume = resumeRepo.findById(id)
         .orElseThrow(() -> new ResourceNotFoundException("Resume with ID: " + id.toString() + " not found."));
+    return sortChildEntities(resume);
   }
 
   public Resume getPrimaryResume() {
-    return resumeRepo.findOneByIsPrimaryTrue()
+    Resume primaryResume = resumeRepo.findOneByIsPrimaryTrue()
         .orElseThrow(() -> new ResourceNotFoundException("Could not find primary resume."));
+    return sortChildEntities(primaryResume);
   }
 
   public Resume saveResume(Resume resume) {
@@ -43,7 +49,7 @@ public class ResumeService {
     if (resume.isPrimary()) {
       clearPrimaryResumes();
     }
-    return resumeRepo.save(resume);
+    return sortChildEntities(resumeRepo.save(resume));
   }
 
   public Resume updateResume(Resume resume, UUID id) {
@@ -55,7 +61,7 @@ public class ResumeService {
     if (resume.isPrimary()) {
       clearPrimaryResumes();
     }
-    return resumeRepo.save(resume);
+    return sortChildEntities(resumeRepo.save(resume));
   }
 
   public void deleteResume(Resume resume, UUID id) {
@@ -74,6 +80,16 @@ public class ResumeService {
         resumeRepo.save(resume);
       });
     });
+  }
+
+  private Resume sortChildEntities(Resume resume) {
+    resume.setProjects(
+        resume.getProjects().stream().sorted(Comparator.comparing(ResumeProject::getStartDate).reversed()).toList());
+    resume.setEducation(
+        resume.getEducation().stream().sorted(Comparator.comparing(ResumeEducation::getStartDate).reversed()).toList());
+    resume.setJobs(
+        resume.getJobs().stream().sorted(Comparator.comparing(ResumeJob::getStartDate).reversed()).toList());
+    return resume;
   }
 
 }
