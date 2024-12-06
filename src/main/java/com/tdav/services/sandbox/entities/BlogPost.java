@@ -17,6 +17,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -59,9 +60,9 @@ public class BlogPost {
   @Enumerated(EnumType.STRING)
   private BlogStatusEnum status;
 
-  @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-  @JoinColumn(name = "blog_section_id")
-  private List<BlogSection> sections;
+  @Column
+  @Lob
+  private String content;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
   @JoinColumn(name = "blog_tag_id")
@@ -161,14 +162,6 @@ public class BlogPost {
 
   public void setStatus(BlogStatusEnum status) {
     this.status = status;
-  }
-
-  public List<BlogSection> getSections() {
-    return sections;
-  }
-
-  public void setSections(List<BlogSection> sections) {
-    this.sections = sections;
   }
 
   public List<BlogTag> getTags() {
