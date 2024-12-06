@@ -30,6 +30,10 @@ public class BlogPostDTO {
     this.tags = blogPost.getTags();
   }
 
+  public static BlogPostDTO fromEntity(BlogPost blogPost) {
+    return new BlogPostDTO(blogPost);
+  }
+
   public UUID getId() {
     return id;
   }

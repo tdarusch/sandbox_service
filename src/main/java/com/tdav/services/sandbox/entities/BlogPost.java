@@ -1,6 +1,5 @@
 package com.tdav.services.sandbox.entities;
 
-import java.text.Normalizer;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -172,27 +171,22 @@ public class BlogPost {
     this.tags = tags;
   }
 
+  public String getContent() {
+    return content;
+  }
+
+  public void setContent(String content) {
+    this.content = content;
+  }
+
   @PrePersist
   protected void onCreate() {
     createdDate = LocalDate.now();
-    slug = getSlug(title);
   }
 
   @PreUpdate
   protected void onUpdate() {
     revisedDate = LocalDate.now();
-    slug = getSlug(title);
-  }
-
-  private String getSlug(String title) {
-    String titleSlug = title;
-    if (titleSlug != null) {
-      titleSlug = titleSlug.toLowerCase();
-      titleSlug = Normalizer.normalize(titleSlug, Normalizer.Form.NFD);
-      titleSlug = titleSlug.replaceAll("[^a-z0-9\\s]", "").replaceAll("\\s+", "-");
-      titleSlug = titleSlug.replaceAll("^-|-$", "");
-    }
-    return titleSlug;
   }
 
 }

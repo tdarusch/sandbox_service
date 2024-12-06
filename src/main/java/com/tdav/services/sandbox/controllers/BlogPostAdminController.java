@@ -24,19 +24,19 @@ public class BlogPostAdminController {
     this.blogPostService = blogPostService;
   }
 
-  @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public BlogPost saveBlogPost(@RequestBody BlogPost blogPost) {
-    return blogPostService.saveBlogPost(blogPost);
-  }
+  // @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  // public BlogPost saveBlogPost(@RequestBody BlogPost blogPost) {
+  //   return blogPostService.saveBlogPost(blogPost);
+  // }
 
-  @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public BlogPost updateBlogPost(@PathVariable UUID id, @RequestBody BlogPost blogPost) {
-    return blogPostService.updateBlogPost(blogPost, id);
-  }
+  // @PutMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  // public BlogPost updateBlogPost(@PathVariable UUID id, @RequestBody BlogPost blogPost) {
+  //   return blogPostService.updateBlogPost(blogPost, id);
+  // }
 
-  @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public void deleteBlogPost(@PathVariable UUID id, @RequestBody BlogPost blogPost) {
-    blogPostService.deleteBlogPost(blogPost, id);
-  }
+  // @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+  // public void deleteBlogPost(@PathVariable UUID id, @RequestBody BlogPost blogPost) {
+  //   blogPostService.deleteBlogPost(blogPost, id);
+  // }
   
 }

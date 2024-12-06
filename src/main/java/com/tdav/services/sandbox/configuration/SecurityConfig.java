@@ -28,6 +28,7 @@ public class SecurityConfig {
     http
         .cors(withDefaults())
         .csrf(csrf -> csrf.disable())
+        .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()))
         .addFilterBefore(new JwtAuthenticationFilter(secretKey), UsernamePasswordAuthenticationFilter.class)
         .authorizeHttpRequests(auth -> auth
           .requestMatchers("/admin/**").hasRole("ADMIN")
