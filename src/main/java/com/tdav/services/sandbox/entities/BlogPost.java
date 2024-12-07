@@ -16,7 +16,6 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -59,8 +58,7 @@ public class BlogPost {
   @Enumerated(EnumType.STRING)
   private BlogStatusEnum status;
 
-  @Column
-  @Lob
+  @Column(columnDefinition = "text")
   private String content;
 
   @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
